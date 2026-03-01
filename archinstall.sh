@@ -12,39 +12,49 @@ set -e
 # ping archlinux.org #verificar internet primeiro
 # para wifi usar 'IWCTL' 
 
-
-#--------------
-# COM INTERNET
-#--------------
-# timedatectl > verificar se hora está correta no UTC
 echo "--------------------------------"
-echo "     Bem vindo ao SCRIPT "
-echo "     De instalação do arch "
+echo "    Bem vindo ao SCRIPT "
+echo "    De instalação do arch "
 echo "--------------------------------"
 
+# 1. Verificação de Root
 if [ "$(id -u)" -ne 0 ]; then
     echo "Execute como root."
     exit 1
 fi
 
+# 2. Verificação de UEFI
 if [ ! -d /sys/firmware/efi ]; then
     echo "Sistema NÃO está em modo UEFI. Abortando."
     exit 1
 fi
 
+# 3. Verificação de Internet (Nova Melhoria)
+echo "Verificando conexão com a internet..."
+if ! ping -c 1 archlinux.org &> /dev/null; then
+    echo "Sem conexão com a internet. Conecte-se (via cabo ou wifi-menu/iwctl) e tente novamente."
+    exit 1
+fi
+echo "Internet OK!"
 
-timedatectl set-ntp true # para atualizar
+timedatectl set-ntp true # para atualizar a hora
+
+echo "--------------------------------"
 echo "Dispositivos disponíveis:"
 lsblk -d -o NAME,SIZE,MODEL
+echo "--------------------------------"
 
+# Desabilitar o 'set -e' temporariamente para o read não quebrar se o usuário der Ctrl+C de forma estranha
+set +e
 read -p "Digite o caminho do seu block device (ex: /dev/sda ou /dev/nvme0n1): " DEVICE
+set -e
+
 if [ ! -b "$DEVICE" ]; then
     echo "Device inválido."
     exit 1
 fi
 
 echo "Seu caminho é: '$DEVICE'"
-
 
 # Detectar sufixo de partição (NVMe usa 'p')
 if [[ "$DEVICE" =~ [0-9]$ ]]; then
@@ -54,9 +64,10 @@ else
 fi
 
 echo "--------------------------------"
-echo "     ATUALIZANDO PACMAN.CONF    "
+echo "    ATUALIZANDO PACMAN.CONF     "
 echo "--------------------------------"
 
+# Otimizações do pacman no sistema Live (Pendrive)
 sed -i 's/^#Color/Color/' /etc/pacman.conf
 sed -i '/^Color/a ILoveCandy' /etc/pacman.conf
 sed -i 's/^#VerbosePkgLists/VerbosePkgLists/' /etc/pacman.conf
@@ -65,53 +76,47 @@ sed -i 's/^#ParallelDownloads = .*/ParallelDownloads = 10/' /etc/pacman.conf
 sed -i '/^\#\[multilib\]/,/^#Include/ s/^#//' /etc/pacman.conf
 
 echo "--------------------------------"
-echo "   Atualizando mirrorlist...   "
+echo "  Atualizando mirrorlist...     "
 echo "--------------------------------"
-reflector --country Brazil --latest 5 --age  24 --protocol https --sort rate --verbose --save /etc/pacman.d/mirrorlist
+reflector --country Brazil --latest 5 --age 24 --protocol https --sort rate --verbose --save /etc/pacman.d/mirrorlist
 
 # -- PARTICIONAMENTO --  
-# config recomendada (fdisk -l /dev/sda): 
-# /dev/seuDisco1 para EFI
-# /dev/seuDisco2 para SWAP
-# /dev/seuDisco3 para o /
-
-
-
-
 echo "---------------------------"
 echo "   PARTICIONANDO DISCO"
 echo " ATENÇÃO: TODOS OS DADOS"
 echo "      SERÃO APAGADOS"
 echo "---------------------------"
+
+set +e
 read -p "Confirma? (yes/NO): " CONFIRM
+set -e
+
 if [[ "$CONFIRM" != "yes" ]]; then
     echo "Abortando..."
     exit 1
 fi
-wipefs -a "$DEVICE" # apagar disco
+
+echo "Apagando disco e criando partições..."
+wipefs -a "$DEVICE" # apagar assinaturas antigas do disco
 parted -s "$DEVICE" mklabel gpt # cria tabela gpt
-parted -s "$DEVICE" mkpart ESP fat32 1MiB 1025MiB # cria partição EFI (ESP é o nome) com inicio em 1MiB e fim em 1024Mib (1G)
+parted -s "$DEVICE" mkpart ESP fat32 1MiB 1025MiB # cria partição EFI (1G)
 parted -s "$DEVICE" set 1 esp on # marca a partição como EFI
 parted -s "$DEVICE" mkpart primary linux-swap 1025MiB 17409MiB # cria swap com 16G 
 parted -s "$DEVICE" mkpart primary ext4 17409MiB 100% # usa o resto do hd para o /
 
-
 echo "--------------------------------"
-echo "   Formatando partições...   "
+echo "  Formatando partições...       "
 echo "--------------------------------"
 mkfs.fat -F 32 "${PART_PREFIX}1" # formatar o efi com fat32
 mkswap "${PART_PREFIX}2" # criar swap
 mkfs.ext4 "${PART_PREFIX}3" # formatar o / com ext4
-# se quiser checar basta rodar lsblk -f
 
 echo "--------------------------------"
-echo "   Montando sistema...   "
+echo "  Montando sistema...           "
 echo "--------------------------------"
 mount "${PART_PREFIX}3" /mnt #montando o /
-mount --mkdir "${PART_PREFIX}1" /mnt/boot #montando /boot e efi
-swapon "${PART_PREFIX}2" #ligar swarp
-# se quiser checar, lsblk vai mostrar
-
+mount --mkdir "${PART_PREFIX}1" /mnt/boot #montando /boot (EFI)
+swapon "${PART_PREFIX}2" #ligar swap
 
 # ------------------------
 # Detectar microcode
@@ -123,16 +128,23 @@ else
     UCODE="intel-ucode"
 fi
 
-# ------------------------
-# Instalar sistema base
-# ------------------------
+echo "--------------------------------"
+echo " Instalando sistema base...     "
+echo "--------------------------------"
 pacstrap -K /mnt base linux linux-firmware linux-headers base-devel sudo nano networkmanager grub efibootmgr os-prober $UCODE git man-db man-pages texinfo vim
+
+# 4. Copiar o pacman.conf otimizado para o novo sistema (Nova Melhoria)
+echo "Copiando pacman.conf otimizado para o novo sistema..."
+cp /etc/pacman.conf /mnt/etc/pacman.conf
+
+echo "Gerando fstab..."
 genfstab -U /mnt >> /mnt/etc/fstab
 
-# ------------------------
-# Configuração dentro do chroot
-# ------------------------
+echo "--------------------------------"
+echo " Configuração dentro do chroot  "
+echo "--------------------------------"
 
+# Entrando no chroot de forma não interativa para as configurações gerais
 arch-chroot /mnt /bin/bash <<EOF
 
 ln -sf /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
@@ -153,13 +165,9 @@ echo "127.0.1.1 archbtw.localdomain archbtw" >> /etc/hosts
 
 useradd -m -G wheel -s /bin/bash thalles
 
-echo "Defina senha do root:"
-passwd
-
-echo "Defina senha do usuário thalles:"
-passwd thalles
-
-sed -i 's/^# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/' /etc/sudoers
+# 5. Modo seguro de dar permissão ao grupo wheel (Nova Melhoria)
+echo "%wheel ALL=(ALL:ALL) ALL" > /etc/sudoers.d/wheel
+chmod 440 /etc/sudoers.d/wheel
 
 systemctl enable NetworkManager
 
@@ -168,27 +176,20 @@ grub-mkconfig -o /boot/grub/grub.cfg
 
 EOF
 
+# 6. Configuração de senhas (FORA DO Here-Doc - Correção do seu problema)
+echo "--------------------------------"
+echo " Defina a senha do ROOT:"
+echo "--------------------------------"
+arch-chroot /mnt passwd
+
+echo "--------------------------------"
+echo " Defina a senha do usuário thalles:"
+echo "--------------------------------"
+arch-chroot /mnt passwd thalles
+
+echo "--------------------------------"
+echo " Finalizando instalação...      "
+echo "--------------------------------"
 umount -R /mnt
-echo "Instalação concluída. Reinicie."
-
-
-
-# -- PARTICIONAMENTO MANUAL (Tentar não usar isso) --
-# Começe com G para criar a tabela gpt
-# 1G de ESP (EFI): n, number default, first default, last +1G, t 'uefi'
-# 16G de Swap: n, number default, first default, last +16G, t, 2 'swap'
-# Resto com / : n, enter, enter, enter
-# Salve com W, tudo feito
-
-
-# fdisk -l #verificar nome do meu block device, provavelmente /dev/sda ou /dev/nvme0n1
-
-# editar o pacman.conf para ser mais rapido, lembrando que tudo feito aqui vai para o sistema original também
-# /etc/pacman.conf
-# adicionar:
-#Color
-#ILoveCandy
-#ParallelDownloads = 10
-#VerbosePkgLists
-#CheckSpace
-# -- IMPORTANTE: Descomentar 2 linhas do multilib
+swapoff -a
+echo "Instalação concluída com sucesso! Você já pode reiniciar (digite 'reboot')."
