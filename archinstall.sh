@@ -100,8 +100,6 @@ instalar_base_e_chroot() {
     echo "KEYMAP=br-abnt2" > /etc/vconsole.conf
     echo archbtw > /etc/hostname
 
-    echo "127.0.0.1 localhost" >> /etc/hosts
-    echo "::1       localhost" >> /etc/hosts
     echo "127.0.1.1 archbtw.localdomain archbtw" >> /etc/hosts
 
     useradd -m -G wheel -s /bin/bash thalles
