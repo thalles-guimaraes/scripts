@@ -3,6 +3,17 @@
 # Habilita a parada imediata se algum comando falhar
 set -e
 
+#--------------
+# SEM INTERNET (antes do script)
+# - Setar teclado
+# - Setar fonte 
+# - Conectar internet
+#--------------
+# loadkeys br-abnt2 #ou 'us' para teclado americano 
+# setfont ter-132b
+# ping archlinux.org #verificar internet primeiro
+# para wifi usar 'IWCTL' 
+
 # ==========================================
 # 1. VERIFICAÇÕES INICIAIS (PRE-FLIGHT)
 # ==========================================
