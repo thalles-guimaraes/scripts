@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# Habilita a parada imediata se algum comando falhar
 set -e
 
 #--------------
