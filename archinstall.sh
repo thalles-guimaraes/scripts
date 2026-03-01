@@ -53,7 +53,7 @@ otimizar_pacman() {
     sed -i '/^Color/a ILoveCandy' /etc/pacman.conf
     sed -i 's/^#VerbosePkgLists/VerbosePkgLists/' /etc/pacman.conf
     sed -i 's/^#CheckSpace/CheckSpace/' /etc/pacman.conf
-    sed -i 's/^#ParallelDownloads = .*/ParallelDownloads = 10/' /etc/pacman.conf
+    sed -i 's/^#* *ParallelDownloads.*/ParallelDownloads = 10/' /etc/pacman.conf
     sed -i '/^\#\[multilib\]/,/^#Include/ s/^#//' /etc/pacman.conf
 
     reflector --country Brazil --latest 5 --age 24 --protocol https --sort rate --verbose --save /etc/pacman.d/mirrorlist
