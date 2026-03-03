@@ -100,5 +100,4 @@ xdg-user-dirs-update
 echo "========================================="
 echo " INSTALAÇÃO CONCLUÍDA COM SUCESSO!       "
 echo " Lembre-se de configurar o GRUB se for NVIDIA. "
-echo " Digite 'Hyprland' para iniciar.         "
 echo "========================================="
