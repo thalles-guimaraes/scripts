@@ -53,7 +53,7 @@ yay -S --noconfirm zen-browser-bin vesktop-bin
 echo "Configurando dotfiles..."
 mkdir -p ~/.config
 rm -rf ~/.config/hypr
-ln -s ~/dotfiles/hypr ~/.config/hypr
+ln -s ~/dotfiles/.config/hypr ~/.config/hypr
 
 
 # ------------------
@@ -86,13 +86,13 @@ ln -s ~/dotfiles/hypr ~/.config/hypr
 echo "Configurando aplicativos padrão..."
 
 ## Define o visualizador de imagens (exemplo usando o programa 'imv')
-#xdg-mime default eog.desktop image/jpeg image/png image/gif image/webp
+# xdg-mime default eog.desktop image/jpeg image/png image/gif image/webp
 
 ## Define o player de vídeo (exemplo usando o 'mpv')
-#xdg-mime default mpv.desktop video/mp4 video/x-matroska video/webm
+# xdg-mime default mpv.desktop video/mp4 video/x-matroska video/webm
 
 ## Define o navegador padrão (importante para links funcionarem em outros apps)
-#xdg-mime default firefox.desktop x-scheme-handler/http x-scheme-handler/https text/html
+# xdg-mime default firefox.desktop x-scheme-handler/http x-scheme-handler/https text/html
 
 # chsh -s  /usr/bin/zsh
 # deslogar para efetivar mudanças
