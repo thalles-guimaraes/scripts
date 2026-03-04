@@ -9,7 +9,8 @@ echo "========================================="# ------------------
 # MUST HAVE  
 # ------------------
 echo "Instalando Hyprland, software essenciais e habilitando serviços..."
-sudo pacman -S --noconfirm hyprland sddm dunst xdg-desktop-portal-hyprland hyprpolkitagent qt5-wayland qt6-wayland alacritty
+sudo pacman -S --noconfirm hyprland sddm dunst xdg-desktop-portal-hyprland hyprpolkitagent \
+ qt5-wayland qt6-wayland alacritty qt6-svg qt6-declarative qt5-quickcontrols2 
 sudo systemctl enable sddm.service
 # sddm: configurar ele primeiro, precisa ativar o serviço
     # sudo systemctl enable sddm.service
@@ -29,7 +30,7 @@ echo "Instalando software uteis e configurando..."
 sudo pacman -S --noconfirm waybar hyprpaper rofi-wayland xdg-utils \
  cliphist thunar  grim slurp yazi fastfetch firefox eog mpv \
  starship zsh-autosuggestions zsh-syntax-highlighting fzf \
- adw-gtk-theme qt6ct qt5ct kvantum breeze-icons
+ adw-gtk-theme qt6ct qt5ct kvantum breeze-icons 
 
 
 yay -S --noconfirm visual-studio-code-bin vesktop-bin systemd-numlockontty
@@ -68,6 +69,9 @@ ln -s ~/dotfiles/.config/Code/User/settings.json ~/.config/Code/User/settings.js
 ln -s ~/dotfiles/.config/waybar ~/.config/waybar
 ln -s ~/dotfiles/wallpaper ~/Pictures/wallpaper
 ln -s ~/dotfiles/.config/rofi ~/.config/rofi
+
+sudo unzip ~/dotfiles/usr/share/sddm/themes/catppuccin-macchiato-sky-sddm.zip -d /usr/share/sddm/themes/
+sudo ln -s ~/dotfiles/etc/sddm.conf /etc/
 # xdg-mime default eog.desktop image/jpeg image/png image/gif image/webp
 # chsh -s /usr/bin/zsh
 
