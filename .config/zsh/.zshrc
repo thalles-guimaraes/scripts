@@ -7,6 +7,9 @@ bindkey "^[[3;5~" kill-word
 bindkey "^[[1;5D" backward-word
 bindkey "^[[1;5C" forward-word
 
+# Aliases
+alias ls='ls --color=auto'
+
 # Plugins
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
