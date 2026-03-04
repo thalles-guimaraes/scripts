@@ -1,0 +1,248 @@
+/* ╔══════════════════════════════════════════════════════════════════╗
+ * ║  Rofi Configuration - Catppuccin Mocha                          ║
+ * ║  DE5 - Hyprland Application Launcher                            ║
+ * ╚══════════════════════════════════════════════════════════════════╝ */
+
+/* ── Global Configuration ─────────────────────────────────────── */
+configuration {
+    modi:                "drun,run,window,filebrowser";
+    show-icons:          true;
+    icon-theme:          "Papirus-Dark";
+    display-drun:        " Apps";
+    display-run:         " Run";
+    display-window:      " Windows";
+    display-filebrowser: " Files";
+    drun-display-format: "{name}";
+    font:                "JetBrainsMono Nerd Font 12";
+    hover-select:        true;
+    me-select-entry:     "";
+    me-accept-entry:     "MousePrimary";
+    scroll-method:       0;
+    terminal:            "kitty";
+}
+
+/* ── Catppuccin Mocha Color Definitions ───────────────────────── */
+* {
+    /* Base colors */
+    base:       #1e1e2e;
+    mantle:     #181825;
+    crust:      #11111b;
+    surface0:   #313244;
+    surface1:   #45475a;
+    surface2:   #585b70;
+    overlay0:   #6c7086;
+    overlay1:   #7f849c;
+
+    /* Text colors */
+    text:       #cdd6f4;
+    subtext0:   #a6adc8;
+    subtext1:   #bac2de;
+
+    /* Accent colors */
+    rosewater:  #f5e0dc;
+    flamingo:   #f2cdcd;
+    pink:       #f5c2e7;
+    mauve:      #cba6f7;
+    red:        #f38ba8;
+    maroon:     #eba0ac;
+    peach:      #fab387;
+    yellow:     #f9e2af;
+    green:      #a6e3a1;
+    teal:       #94e2d5;
+    sky:        #89dceb;
+    sapphire:   #74c7ec;
+    blue:       #89b4fa;
+    lavender:   #b4befe;
+
+    /* Functional assignments */
+    bg:         @base;
+    bg-alt:     @surface0;
+    fg:         @text;
+    fg-alt:     @subtext0;
+    accent:     @mauve;
+    urgent:     @red;
+
+    /* Global properties */
+    background-color:   transparent;
+    text-color:         @fg;
+    margin:             0;
+    padding:            0;
+    spacing:            0;
+}
+
+/* ── Window ───────────────────────────────────────────────────── */
+window {
+    width:              680px;
+    background-color:   @bg;
+    border:             2px solid;
+    border-color:       @accent;
+    border-radius:      12px;
+    padding:            0;
+    location:           center;
+    anchor:             center;
+    transparency:       "real";
+}
+
+/* ── Main Container ───────────────────────────────────────────── */
+mainbox {
+    background-color:   @bg;
+    border-radius:      12px;
+    children:           [ inputbar, message, listview ];
+    spacing:            0;
+    padding:            0;
+}
+
+/* ── Input Bar ────────────────────────────────────────────────── */
+inputbar {
+    background-color:   @mantle;
+    border-radius:      12px 12px 0 0;
+    padding:            14px 20px;
+    spacing:            12px;
+    children:           [ prompt, entry ];
+}
+
+prompt {
+    background-color:   @accent;
+    text-color:         @crust;
+    padding:            6px 12px;
+    border-radius:      8px;
+    font:               "JetBrainsMono Nerd Font Bold 12";
+}
+
+entry {
+    background-color:   @surface0;
+    text-color:         @text;
+    padding:            6px 12px;
+    border-radius:      8px;
+    placeholder:        "Search...";
+    placeholder-color:  @overlay0;
+    cursor:             text;
+}
+
+/* ── Message ──────────────────────────────────────────────────── */
+message {
+    background-color:   @bg;
+    border:             0 0 1px 0;
+    border-color:       @surface0;
+    padding:            8px 20px;
+}
+
+textbox {
+    background-color:   @bg;
+    text-color:         @subtext1;
+    padding:            4px;
+}
+
+/* ── List View ────────────────────────────────────────────────── */
+listview {
+    background-color:   @bg;
+    padding:            8px 8px 12px 8px;
+    lines:              8;
+    columns:            1;
+    fixed-height:       true;
+    fixed-columns:      true;
+    spacing:            4px;
+    scrollbar:          false;
+    cycle:              true;
+    dynamic:            true;
+    border-radius:      0 0 12px 12px;
+}
+
+/* ── Elements ─────────────────────────────────────────────────── */
+element {
+    background-color:   transparent;
+    text-color:         @fg;
+    padding:            10px 16px;
+    spacing:            12px;
+    border-radius:      8px;
+    cursor:             pointer;
+}
+
+element normal.normal {
+    background-color:   transparent;
+    text-color:         @fg;
+}
+
+element normal.urgent {
+    background-color:   transparent;
+    text-color:         @urgent;
+}
+
+element normal.active {
+    background-color:   transparent;
+    text-color:         @accent;
+}
+
+element selected.normal {
+    background-color:   @accent;
+    text-color:         @crust;
+}
+
+element selected.urgent {
+    background-color:   @urgent;
+    text-color:         @crust;
+}
+
+element selected.active {
+    background-color:   @accent;
+    text-color:         @crust;
+}
+
+element alternate.normal {
+    background-color:   transparent;
+    text-color:         @fg;
+}
+
+element alternate.urgent {
+    background-color:   transparent;
+    text-color:         @urgent;
+}
+
+element alternate.active {
+    background-color:   transparent;
+    text-color:         @accent;
+}
+
+element-icon {
+    background-color:   transparent;
+    text-color:         inherit;
+    size:               28px;
+    cursor:             inherit;
+}
+
+element-text {
+    background-color:   transparent;
+    text-color:         inherit;
+    highlight:          bold underline;
+    cursor:             inherit;
+    vertical-align:     0.5;
+}
+
+/* ── Scrollbar (hidden but styled) ────────────────────────────── */
+scrollbar {
+    width:              4px;
+    handle-width:       4px;
+    handle-color:       @surface2;
+    border-radius:      4px;
+    background-color:   @surface0;
+}
+
+/* ── Mode Switcher ────────────────────────────────────────────── */
+mode-switcher {
+    background-color:   @mantle;
+    padding:            8px;
+    spacing:            8px;
+}
+
+button {
+    background-color:   @surface0;
+    text-color:         @subtext1;
+    padding:            8px 16px;
+    border-radius:      8px;
+    cursor:             pointer;
+}
+
+button selected {
+    background-color:   @accent;
+    text-color:         @crust;
+}

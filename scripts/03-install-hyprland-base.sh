@@ -32,9 +32,9 @@ sudo pacman -S --noconfirm waybar hyprpaper rofi-wayland xdg-utils \
  adw-gtk-theme qt6ct qt5ct kvantum breeze-icons
 
 
+yay -S --noconfirm visual-studio-code-bin vesktop-bin systemd-numlockontty
 
-
-yay -S --noconfirm visual-studio-code-bin vesktop-bin
+systemctl enable numLockOnTty
 # WAYBAR: Barra padrão : exec-once = waybar
 # hyprpaper: papel de parede : exec-once = hyprpaper
 # ROFI-WAYLAND : abre programas, tem plugins (calculadora, seletor de emojis, clipboard, menu, etc), temas bons, usa .rasi : TROCAR $menu para rofi no hyprland.conf 
@@ -65,6 +65,9 @@ ln -s ~/dotfiles/.config/alacritty ~/.config/alacritty
 ln -s ~/dotfiles/.config/zsh/.zshrc ~
 ln -s ~/dotfiles/.config/starship.toml ~/.config
 ln -s ~/dotfiles/.config/Code/User/settings.json ~/.config/Code/User/settings.json
+ln -s ~/dotfiles/.config/waybar ~/.config/waybar
+ln -s ~/dotfiles/wallpaper ~/Pictures/wallpaper
+ln -s ~/dotfiles/.config/rofi ~/.config/rofi
 # xdg-mime default eog.desktop image/jpeg image/png image/gif image/webp
 # chsh -s /usr/bin/zsh
 
