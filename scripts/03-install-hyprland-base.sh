@@ -30,7 +30,7 @@ echo "Instalando software uteis e configurando..."
 sudo pacman -S --noconfirm waybar hyprpaper rofi-wayland xdg-utils \
  cliphist thunar  grim slurp yazi fastfetch firefox eog mpv \
  starship zsh-autosuggestions zsh-syntax-highlighting fzf \
- adw-gtk-theme qt6ct qt5ct kvantum breeze-icons 
+ adw-gtk-theme qt6ct qt5ct kvantum breeze-icons obsidian
 
 
 yay -S --noconfirm visual-studio-code-bin vesktop-bin systemd-numlockontty
@@ -69,6 +69,7 @@ ln -s ~/dotfiles/.config/Code/User/settings.json ~/.config/Code/User/settings.js
 ln -s ~/dotfiles/.config/waybar ~/.config/waybar
 ln -s ~/dotfiles/wallpaper ~/Pictures/wallpaper
 ln -s ~/dotfiles/.config/rofi ~/.config/rofi
+ln -s ~/dotfiles/.config/yazi ~/.config/yazi
 
 sudo unzip ~/dotfiles/usr/share/sddm/themes/catppuccin-frappe-mauve-sddm.zip -d /usr/share/sddm/themes/
 sudo ln -s ~/dotfiles/etc/sddm.conf /etc/
@@ -140,7 +141,7 @@ echo "Configurando aplicativos padrão..."
 # INSTALAR O TEMA DO VSCODE PARA CATPPUCCIN MACCHIATO
 # ADICIONAR O TODOIST para abrir automaticamente no firefox!!
 # Para tema no firefox: https://github.com/catppuccin/firefox?tab=readme-ov-file
-
+# congigurar SSD para github e depois só sucessooo
 
 echo "========================================="
 echo " INSTALAÇÃO CONCLUÍDA COM SUCESSO!       "
