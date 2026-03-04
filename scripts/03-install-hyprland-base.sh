@@ -70,7 +70,7 @@ ln -s ~/dotfiles/.config/waybar ~/.config/waybar
 ln -s ~/dotfiles/wallpaper ~/Pictures/wallpaper
 ln -s ~/dotfiles/.config/rofi ~/.config/rofi
 
-sudo unzip ~/dotfiles/usr/share/sddm/themes/catppuccin-macchiato-sky-sddm.zip -d /usr/share/sddm/themes/
+sudo unzip ~/dotfiles/usr/share/sddm/themes/catppuccin-frappe-mauve-sddm.zip -d /usr/share/sddm/themes/
 sudo ln -s ~/dotfiles/etc/sddm.conf /etc/
 # xdg-mime default eog.desktop image/jpeg image/png image/gif image/webp
 # chsh -s /usr/bin/zsh
@@ -135,8 +135,11 @@ echo "Configurando aplicativos padrão..."
 # sudo pacman -S awd-gtk-theme xdg-desktop-portal xdg-desktop-portal-hyprland xdg-desktop-gtk qt6ct qt5ct breeze-icons
 
 
+# CATPPUCCIN FRAPPE MAUVE
 # TROCAR GOOGLE para DUCKDUCKGO no firefox
 # INSTALAR O TEMA DO VSCODE PARA CATPPUCCIN MACCHIATO
+# ADICIONAR O TODOIST para abrir automaticamente no firefox!!
+# Para tema no firefox: https://github.com/catppuccin/firefox?tab=readme-ov-file
 
 
 echo "========================================="
