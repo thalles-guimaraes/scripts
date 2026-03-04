@@ -72,7 +72,7 @@ instalar_base_e_chroot() {
     fi
 
     # Pacstrap com pacotes essenciais (inclui os-prober e ntfs-3g para dual boot)
-    pacstrap -K /mnt base linux linux-firmware linux-headers base-devel sudo nano networkmanager grub efibootmgr os-prober ntfs-3g $UCODE git man-db man-pages texinfo vim
+    pacstrap -K /mnt base linux linux-firmware linux-headers base-devel sudo nano networkmanager grub efibootmgr os-prober ntfs-3g $UCODE git man-db man-pages texinfo vim zsh
 
     echo "Copiando pacman.conf otimizado..."
     cp /etc/pacman.conf /mnt/etc/pacman.conf
@@ -101,7 +101,7 @@ instalar_base_e_chroot() {
 
     echo "127.0.1.1 archbtw.localdomain archbtw" >> /etc/hosts
 
-    useradd -m -G wheel -s /bin/bash thalles
+    useradd -m -G wheel -s /bin/zsh thalles
     echo "%wheel ALL=(ALL:ALL) ALL" > /etc/sudoers.d/wheel
     chmod 440 /etc/sudoers.d/wheel
 

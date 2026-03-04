@@ -26,8 +26,8 @@ sudo systemctl enable sddm.service
 # ------------------
 # ADICIONAR PERGUNTA PARA O USUÁRIO SE ELE QUER PASSAR POR ESSA PARTE
 echo "Instalando software uteis e configurando..."
-sudo pacman -S --noconfirm waybar hyprpaper rofi-wayland xdg-utils cliphist thunar grim slurp yazi code zsh fastfetch firefox
-yay -S --noconfirm vesktop-bin
+sudo pacman -S --noconfirm waybar hyprpaper rofi-wayland xdg-utils cliphist thunar grim slurp yazi code fastfetch firefox eog mpv starship zsh-autosuggestions zsh-syntax-highlighting fzf
+yay -S --noconfirm visual-studio-code-bin vesktop-bin
 # WAYBAR: Barra padrão : exec-once = waybar
 # hyprpaper: papel de parede : exec-once = hyprpaper
 # ROFI-WAYLAND : abre programas, tem plugins (calculadora, seletor de emojis, clipboard, menu, etc), temas bons, usa .rasi : TROCAR $menu para rofi no hyprland.conf 
@@ -39,8 +39,8 @@ yay -S --noconfirm vesktop-bin
     #Arquivos de Configuração: Ele guarda as configurações em arquivos de texto (dentro de ~/.config/Thunar/), incluindo as suas Ações Personalizadas (no arquivo uca.xml), então dá para restaurar o seu setup facilmente, embora não seja tão "limpo" quanto o Yazi.
     #Plugins: Suporta plugins oficiais (como o thunar-archive-plugin para extrair zips e o thunar-volman para pendrives).
 # Yazi: gerenciador de arquivos no terminal (talvez seja loucura) -> tem plugin pra poha
-# Code: vscode opensource, usar ele pois vou migrar depois para o nvim
-# ZSH : shell, usar com Starship
+# vsCode: editor de código, ver como estilizar depois
+# ZSH : shell, usar com starship zsh-autosuggestions zsh-syntax-highlighting fzf
 # fastfetch : ver o sistema ()
 # GRIM: Screenshot : cofigurar no hyprland
 # SLURP: Screenshot in region : configurar no hyprland
@@ -54,6 +54,12 @@ echo "Configurando dotfiles..."
 mkdir -p ~/.config
 rm -rf ~/.config/hypr
 ln -s ~/dotfiles/.config/hypr ~/.config/hypr
+ln -s ~/dotfiles/.config/alacritty ~/.config/alacritty
+ln -s ~/dotfiles/.config/zsh/.zshrc ~
+# xdg-mime default eog.desktop image/jpeg image/png image/gif image/webp
+# chsh -s /usr/bin/zsh
+
+
 
 
 # ------------------
@@ -113,10 +119,13 @@ echo "Configurando aplicativos padrão..."
 # sudo pacman -S awd-gtk-theme xdg-desktop-portal xdg-desktop-portal-hyprland xdg-desktop-gtk qt6ct qt5ct breeze-icons
 
 
+# TROCAR GOOGLE para DUCKDUCKGO no firefox
+# TROCAR O TEMA DO VSCODE PARA CATPPUCCIN MACCHIATO
 
 echo "========================================="
 echo " INSTALAÇÃO CONCLUÍDA COM SUCESSO!       "
 echo " Digite 'start-hyprland' para iniciar.         "
 echo " Ou reinicie o computador         "
 echo "========================================="
+
 
