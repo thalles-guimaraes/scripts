@@ -26,7 +26,14 @@ sudo systemctl enable sddm.service
 # ------------------
 # ADICIONAR PERGUNTA PARA O USUÁRIO SE ELE QUER PASSAR POR ESSA PARTE
 echo "Instalando software uteis e configurando..."
-sudo pacman -S --noconfirm waybar hyprpaper rofi-wayland xdg-utils cliphist thunar grim slurp yazi code fastfetch firefox eog mpv starship zsh-autosuggestions zsh-syntax-highlighting fzf
+sudo pacman -S --noconfirm waybar hyprpaper rofi-wayland xdg-utils \
+ cliphist thunar  grim slurp yazi fastfetch firefox eog mpv \
+ starship zsh-autosuggestions zsh-syntax-highlighting fzf \
+ adw-gtk-theme qt6ct qt5ct kvantum breeze-icons
+
+
+
+
 yay -S --noconfirm visual-studio-code-bin vesktop-bin
 # WAYBAR: Barra padrão : exec-once = waybar
 # hyprpaper: papel de parede : exec-once = hyprpaper
@@ -56,6 +63,8 @@ rm -rf ~/.config/hypr
 ln -s ~/dotfiles/.config/hypr ~/.config/hypr
 ln -s ~/dotfiles/.config/alacritty ~/.config/alacritty
 ln -s ~/dotfiles/.config/zsh/.zshrc ~
+ln -s ~/dotfiles/.config/starship.toml ~/.config
+ln -s ~/dotfiles/.config/Code/User/settings.json ~/.config/Code/User/settings.json
 # xdg-mime default eog.desktop image/jpeg image/png image/gif image/webp
 # chsh -s /usr/bin/zsh
 
@@ -120,7 +129,8 @@ echo "Configurando aplicativos padrão..."
 
 
 # TROCAR GOOGLE para DUCKDUCKGO no firefox
-# TROCAR O TEMA DO VSCODE PARA CATPPUCCIN MACCHIATO
+# INSTALAR O TEMA DO VSCODE PARA CATPPUCCIN MACCHIATO
+
 
 echo "========================================="
 echo " INSTALAÇÃO CONCLUÍDA COM SUCESSO!       "

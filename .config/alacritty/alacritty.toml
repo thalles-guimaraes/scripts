@@ -1,1 +1,24 @@
 general.import = ["~/.config/alacritty/catppuccin-macchiato.toml"]
+
+[window]
+opacity = 0.90
+decorations = "Full"
+
+[scrolling]
+history = 10000
+multiplier = 3
+
+[font]
+size = 14.0
+
+[font.normal]
+family = "JetBrainsMono Nerd Font"
+
+[font.bold]
+family = "JetBrainsMono Nerd Font"
+
+[font.italic]
+family = "JetBrainsMono Nerd Font"
+
+[font.bold_italic]
+family = "JetBrainsMono Nerd Font"
