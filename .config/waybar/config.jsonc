@@ -32,9 +32,9 @@
   
   "custom/wifi": {
     "format": " ",
-    "on-click": "foot -e nmtui",
+    "on-click": "rofi -show wifi -iface wlan0",
     "tooltip": false
-},
+  },
 
   "hyprland/window": {
     "separate-outputs": true,

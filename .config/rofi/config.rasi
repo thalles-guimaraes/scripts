@@ -246,3 +246,21 @@ button selected {
     background-color:   @accent;
     text-color:         @crust;
 }
+
+configuration {
+  wifi {
+    modi: "drun,run,window,wifi";
+    state-connecting-indicator: [ "connecting .", "connecting ..", "connecting ..."];
+    state-connecting-fps: 4;
+
+    state-scan-indicator: [ "⠻", "⠽", "⠾", "⠷", "⠯", "⠟"];
+    state-scan-fps: 10;
+
+    // Five icons must be provided, otherwise the default will be used.
+
+    icon-open: [ "󰤨", "󰤥", "󰤢", "󰤟", "󰤯"];
+
+    // Five icons must be provided, otherwise the default will be used.
+    icon-psk: [ "󰤪", "󰤧", "󰤤", "󰤡", "󰤬"];
+  }
+}

@@ -25,7 +25,7 @@ sudo pacman -S --noconfirm waybar hyprpaper rofi-wayland xdg-utils \
  starship zsh-autosuggestions zsh-syntax-highlighting fzf \
  adw-gtk-theme qt6ct qt5ct kvantum breeze-icons obsidian
 
-yay -S --noconfirm visual-studio-code-bin vesktop-bin systemd-numlockontty
+yay -S --noconfirm visual-studio-code-bin vesktop-bin systemd-numlockontty rofi-wifi
 
 sudo systemctl enable numLockOnTty
 
@@ -64,6 +64,6 @@ echo "========================================="
 
 # TROCAR GOOGLE para DUCKDUCKGO no firefox
 # INSTALAR O TEMA DO VSCODE PARA CATPPUCCIN MACCHIATO
-# ADICIONAR O TODOIST para abrir automaticamente no firefox!!
+# ADICIONAR O TODOIST para abrir automaticamente no firefox!! --> duck duck go
 # Para tema no firefox: https://github.com/catppuccin/firefox?tab=readme-ov-file
-# congigurar SSD para github e depois só sucessooo
+# congigurar SSD para github para que eu possa baixar o obsidian
