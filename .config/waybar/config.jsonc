@@ -56,7 +56,7 @@
   },
 
   "clock": {
-    "format": "<span></span>  {:%H:%M}",
+    "format": "<span></span>  {:%d/%m/%Y %H:%M}",
     "interval": 1,
     "tooltip-format": "<tt>{calendar}</tt>",
     "calendar": {
