@@ -23,7 +23,7 @@ echo "Instalando software uteis e configurando..."
 sudo pacman -S --noconfirm waybar hyprpaper rofi-wayland xdg-utils \
  cliphist thunar  grim slurp yazi fastfetch firefox eog mpv \
  starship zsh-autosuggestions zsh-syntax-highlighting fzf \
- adw-gtk-theme qt6ct qt5ct kvantum breeze-icons obsidian
+ adw-gtk-theme qt6ct qt5ct kvantum breeze-icons obsidian hypridle hyprlock
 
 yay -S --noconfirm visual-studio-code-bin vesktop-bin systemd-numlockontty rofi-wifi
 
@@ -63,7 +63,8 @@ echo "========================================="
 
 
 # TROCAR GOOGLE para DUCKDUCKGO no firefox
-# INSTALAR O TEMA DO VSCODE PARA CATPPUCCIN MACCHIATO
 # ADICIONAR O TODOIST para abrir automaticamente no firefox!! --> duck duck go
 # Para tema no firefox: https://github.com/catppuccin/firefox?tab=readme-ov-file
 # congigurar SSD para github para que eu possa baixar o obsidian
+# Tema: catppuccin frappê pink: para o firefox
+# arrumar vesktop tema
