@@ -9,6 +9,7 @@ bindkey "^[[1;5C" forward-word
 
 # Aliases
 alias ls='ls --color=auto'
+alias update-waybar='killall -SIGUSR2 waybar'
 
 # Plugins
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
