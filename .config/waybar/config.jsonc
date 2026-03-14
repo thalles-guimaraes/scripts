@@ -24,16 +24,10 @@
   // Choose the order of the modules
   "modules-left": ["custom/icon", "hyprland/window"],
   "modules-center": ["hyprland/workspaces"],
-  "modules-right": ["custom/wifi", "tray", "battery", "clock"],
+  "modules-right": ["tray", "battery", "clock"],
 
   "custom/icon": {
     "format": ""
-  },
-  
-  "custom/wifi": {
-    "format": "  |",
-    "on-click": "rofi -show wifi -iface wlp2s0",
-    "tooltip": false
   },
 
   "hyprland/window": {
@@ -81,7 +75,7 @@
       "on-discharging-critical": "notify-send -u critical 'Very Low Battery'",
       "on-charging-100": "notify-send -u normal 'Battery Full!'"
     },
-    "format": "{icon}  {capacity}%",
+    "format": "| {icon}  {capacity}%",
     "format-icons": ["", "", "", "", ""],
     "max-length": 25
 }
