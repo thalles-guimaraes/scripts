@@ -25,7 +25,7 @@ sudo pacman -S --noconfirm waybar hyprpaper rofi-wayland xdg-utils \
  starship zsh-autosuggestions zsh-syntax-highlighting fzf \
  adw-gtk-theme qt6ct qt5ct kvantum breeze-icons obsidian hypridle hyprlock
 
-yay -S --noconfirm visual-studio-code-bin vesktop-bin systemd-numlockontty rofi-wifi
+yay -S --noconfirm visual-studio-code-bin vesktop-bin systemd-numlockontty rofi-calc
 
 sudo systemctl enable numLockOnTty
 

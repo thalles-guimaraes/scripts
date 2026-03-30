@@ -46,7 +46,7 @@ sudo pacman -S --needed --noconfirm \
     pipewire wireplumber pipewire-audio pipewire-alsa pipewire-jack pipewire-pulse \
     lib32-pipewire pavucontrol noto-fonts noto-fonts-emoji noto-fonts-cjk \
     ttf-liberation otf-font-awesome ttf-jetbrains-mono ttf-jetbrains-mono-nerd xdg-user-dirs \
-    network-manager-applet foot
+    network-manager-applet foot thunar-archive-plugin
 
 # ---------------------------------------------------
 # 4. AUR HELPER (YAY) - MOVIDO PARA CIMA!
