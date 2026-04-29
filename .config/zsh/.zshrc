@@ -12,6 +12,7 @@ alias ls='ls --color=auto -a'
 alias startSiteCdcc=' (cd "/home/thalles/Documents/programação/cdcc/backend" && ./mvnw spring-boot:run) & (cd "/home/thalles/Documents/programação/cdcc/frontend" && npm start) & wait '
 alias update-waybar='killall -SIGUSR2 waybar'
 alias update-wifi='nmcli radio wifi off && nmcli radio wifi on'
+alias update-monitor='hyprctl dispatch togglespecialworkspace magic'
 
 # Plugins
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
