@@ -17,5 +17,6 @@
         "npm test": true,
         "npm run build": true,
         "awk": true
-    }
+    },
+    "chat.viewSessions.orientation": "stacked"
 }
